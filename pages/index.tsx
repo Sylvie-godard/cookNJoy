@@ -1,36 +1,22 @@
-import React, {Dispatch, useEffect, useState} from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
 import Card from '../components/Card/Card'
 import _ from 'lodash'
-
-interface IRecipe {
-    photo: string;
-    title: string;
-    description: string;
-    id: number
-}
+import { v4 as uuidv4 } from 'uuid'
+import useRecipesTools from '../Common/Hooks/useRecipesTools'
 
 const Home = () => {
-    const [recipes, setRecipes]: [IRecipe[], Dispatch<IRecipe[]>] = useState([{photo: '', title: '', id: 0, description: ''}])
+    const { fetchRecipes, recipes } = useRecipesTools()
 
     useEffect(() => {
-        getRecipes().then(result => console.log(result))
+        fetchRecipes().then()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const getRecipes = async () => {
-        try {
-            const res = await axios.get('/api/recipes')
-            const allRecipes: IRecipe[] = res.data.recipes
-            setRecipes(allRecipes)
-        } catch (errorCategories) {
-            return {errorCategories}
-        }
-    }
 
     const displayRecipes = () => {
         return _.map(recipes, recipe => {
-            return <div className="col-lg-6 mb-5">
-                <Card title={recipe.title} imageName={recipe.title} image={recipe.photo} button={'Voir'} description={recipe.description}/>
+            return <div className="col-lg-6 mb-5" key={uuidv4()}>
+                <Card title={recipe.title} imageName={recipe.title} image={recipe.photo} button={'Voir'}
+                      description={recipe.description}/>
             </div>
         })
     }
