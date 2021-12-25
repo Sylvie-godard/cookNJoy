@@ -26,6 +26,7 @@ const Home = () => {
             <div className="container">
                 <div className="col-lg-12 d-flex row">
                     {displayRecipes()}
+                    {displayRecipes()}
                 </div>
             </div>
         </div>
