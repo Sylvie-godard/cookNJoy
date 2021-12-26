@@ -5,6 +5,12 @@ export interface IRecipe {
     id: number
 }
 
+export interface IRecipeCreate {
+    photo: string;
+    title: string;
+    description: string;
+}
+
 export const defaultRecipe = {
     photo: '',
     title: '',

@@ -16,7 +16,8 @@ export default function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    const body = req.body
+    const data = req.body
+
     const recipesData = requireDir('../../../../../server/mock/recipes')
     const recipes: IRecipe[] = _.map(recipesData, (value, index) => {
         return value
@@ -32,15 +33,10 @@ export default function handler(
     // const description = body.description
 
     const id = 12
-    const title = 'litchee'
-    const description = 'body.description'
+    const title = data.title
     const filePath = path.resolve( 'server', 'mock', 'recipes', title.concat('.json'))
 
-    //C:\\dev\\src\\mpec\\cookNJoy\\
-    const data = {
-        id, title, description, photo: ''
-    }
-
+    data.id = id
     console.log({ filePath })
     fs.writeFileSync(filePath, JSON.stringify(data))
 

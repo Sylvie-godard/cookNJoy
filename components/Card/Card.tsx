@@ -31,7 +31,7 @@ const Card: React.FC<Props> = (
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{description}</p>
                 <Link href={'/recipes/view/' + link}>
-                    <a href="#" className="btn btn-primary">{button}</a>
+                    <a className="btn btn-primary">{button}</a>
                 </Link>
             </div>
         </div>
