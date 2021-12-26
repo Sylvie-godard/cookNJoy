@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import useRecipesTools from '../../../Common/Hooks/useRecipesTools'
 import { useRouter } from 'next/router'
 import _ from 'lodash'
@@ -34,11 +34,16 @@ const RecipeView = () => {
     }
 
     return (
-        <div>
+        <div className={'container'}>
             {isLoad ?
-                <div>
-                    <Image src={'/images/' + actualRecipe.photo} alt={actualRecipe.title} width={400} height={250}/>
-                </div> : null
+                <Fragment>
+                    <h1>{actualRecipe.title}</h1>
+                    <div className="flex">
+                        <Image src={'/images/' + actualRecipe.photo} alt={actualRecipe.title} width={400} height={250}/>
+                        <p><strong>Description:</strong> {actualRecipe.description}</p>
+                    </div>
+
+                </Fragment> : null
             }
         </div>
     )
