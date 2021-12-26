@@ -26,10 +26,9 @@ const RecipeView = () => {
     }, [actualRecipe, recipes])
 
     const LoadRecipe = () => {
-        // @ts-ignore
-        const name: string = _.upperFirst(_.camelCase(id))
-        const recipe: IRecipe = _.get(recipes, name, null)
-        if (!_.isNull(recipe)) {
+        const recipesData = _.filter(recipes, (recipe) => { return recipe.id === Number(id) })
+        const recipe: IRecipe | undefined = _.head(recipesData)
+        if (!_.isUndefined(recipe)) {
             setActualRecipe(recipe)
         }
     }

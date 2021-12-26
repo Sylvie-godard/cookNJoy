@@ -1,24 +1,27 @@
 import React from 'react'
 import style from './Card.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface Props {
+    button: string;
     className?: string;
+    description: string;
     image: any;
     imageName?: string;
+    link: number;
     title: string;
-    description: string;
-    button: string
 }
 
 const Card: React.FC<Props> = (
     {
+        button,
         className,
+        description,
         image,
         imageName,
-        title,
-        description,
-        button
+        link,
+        title
     }) => {
 
     return (
@@ -27,7 +30,9 @@ const Card: React.FC<Props> = (
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{description}</p>
-                <a href="#" className="btn btn-primary">{button}</a>
+                <Link href={'/recipes/view/' + link}>
+                    <a href="#" className="btn btn-primary">{button}</a>
+                </Link>
             </div>
         </div>
     )
