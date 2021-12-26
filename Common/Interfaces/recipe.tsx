@@ -4,3 +4,10 @@ export interface IRecipe {
     description: string;
     id: number
 }
+
+export const defaultRecipe = {
+    photo: '',
+    title: '',
+    description: '',
+    id: 0
+}

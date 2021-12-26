@@ -15,8 +15,13 @@ const Home = () => {
     const displayRecipes = () => {
         return _.map(recipes, recipe => {
             return <div className="col-lg-6 mb-5" key={uuidv4()}>
-                <Card title={recipe.title} imageName={recipe.title} image={recipe.photo} button={'Voir'}
-                      description={recipe.description}/>
+                <Card
+                    button={'Voir'}
+                    description={recipe.description}
+                    image={recipe.photo}
+                    imageName={recipe.title}
+                    title={recipe.title}
+                />
             </div>
         })
     }
@@ -25,7 +30,6 @@ const Home = () => {
         <div>
             <div className="container">
                 <div className="col-lg-12 d-flex row">
-                    {displayRecipes()}
                     {displayRecipes()}
                 </div>
             </div>
