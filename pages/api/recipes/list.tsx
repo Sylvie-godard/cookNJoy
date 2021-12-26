@@ -18,7 +18,7 @@ export default function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    const recipesData = requireDir('../../../../server/mock/recipes')
+    const recipesData = requireDir('../../../../../server/mock/recipes')
     const recipes: IRecipe[] = _.map(recipesData, (value, index) => {
         return value
     })
