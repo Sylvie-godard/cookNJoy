@@ -4,13 +4,7 @@ import _ from 'lodash'
 import requireDir from 'require-dir'
 import path from 'path'
 import fs from 'fs'
-
-interface IRecipe {
-    photo: string;
-    title: string;
-    description: string;
-    id: number
-}
+import { IRecipe } from '../../../Common/Interfaces/recipe'
 
 export default function handler(
     req: NextApiRequest,
@@ -23,22 +17,13 @@ export default function handler(
         return value
     })
 
-    // le titre en upperFirst + camel case => titre .json
-    // pour l'id count de tous les recipes + 1
-    // description + title
-    // photo = image vide
-
-    // const id = recipes.length + 1
-    // const title = body.title
-    // const description = body.description
-
-    const id = 12
+    const count = recipes.length
+    const id = count + 1
     const title = data.title
     const filePath = path.resolve( 'server', 'mock', 'recipes', title.concat('.json'))
 
     data.id = id
-    console.log({ filePath })
     fs.writeFileSync(filePath, JSON.stringify(data))
 
-    res.status(200).json({ recipes })
+    res.status(200).json('ok')
 }

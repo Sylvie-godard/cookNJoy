@@ -1,13 +1,20 @@
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
+import React, { useState } from 'react'
 import useRecipesTools from '../../Common/Hooks/useRecipesTools'
+import { UiFileInputButton } from '../../components/UiFileInputButton/UiFileInputButton'
+import useUploadTools from '../../Common/Hooks/useUploadTools'
+import _ from 'lodash'
 
-function CreateRecipe () {
+function CreateRecipe(this: any) {
+    const { onChange } = useUploadTools()
     const { createRecipe } = useRecipesTools()
+    const fileInputRef = React.useRef<HTMLInputElement | null>(null)
+    const formRef = React.useRef<HTMLFormElement | null>(null)
+    const [createObjectURL, setCreateObjectURL] = useState('')
     const [description, setDescription] = useState<string>('')
-    const [photo, setPhoto] = useState<string>('')
+    const [target, setTarget] = useState<any>(null)
     const [title, setTitle] = useState<string>('')
 
-    const handleChange = (event: ChangeEvent) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault()
         const id = event.target.id
         const value = event.currentTarget.value
@@ -22,45 +29,88 @@ function CreateRecipe () {
         }
     }
 
-    const handleSubmit = async (event: ChangeEvent) => {
-        event.preventDefault()
+    const confirmDownloadAndGetPhoto = () => {
+        if (!_.isNull(target)) {
+            const targetValue = target.value
+            const defaultPath = 'C:\\fakepath\\'
+            const photoName = _.replace(targetValue, defaultPath, '')
+
+            const formData = new FormData()
+            Array.from(target.files).forEach((file: any) => {
+                formData.append(target.name, file)
+            })
+
+            onChange(formData).then()
+            formRef.current?.reset()
+            setCreateObjectURL('')
+
+            return photoName
+        }
+
+        return ''
+    }
+
+    const handleSubmit = async () => {
+        const photoName = confirmDownloadAndGetPhoto()
+
         const data = {
             description,
             title,
-            photo: ''
+            photo: photoName
         }
 
-        console.log({ data })
         await createRecipe(data)
     }
 
     return (
         <div className={'container'}>
-            <form onSubmit={(event) => {handleSubmit(event).then()}}>
-                <div className="form-group">
-                    <label htmlFor="titleRecipe">
-                        Titre
-                    </label>
-                    <input
-                        onChange={(event) => {handleChange(event)}}
-                        className="form-control"
-                        id="titleRecipe"
-                        type="text"
-                        placeholder="Titre"
-                    />
-                </div>
-                <div className="form-group mt-5 mb-5">
-                    <label htmlFor="description">Description</label>
-                    <input
-                        className="form-control"
-                        id="description"
-                        onChange={(event) => {handleChange(event)}}
-                        placeholder="Description"
-                        type="text"
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary">Créer recette</button>
-            </form>
+            <div className="form-group">
+                <label htmlFor="titleRecipe">
+                    Titre
+                </label>
+                <input
+                    onChange={(event) => {
+                        handleChange(event)
+                    }}
+                    className="form-control"
+                    id="titleRecipe"
+                    type="text"
+                    placeholder="Titre"
+                />
+            </div>
+            <div className="form-group mt-5 mb-5">
+                <label htmlFor="description">Description</label>
+                <input
+                    className="form-control"
+                    id="description"
+                    onChange={(event) => {
+                        handleChange(event)
+                    }}
+                    placeholder="Description"
+                    type="text"
+                />
+            </div>
+            <div className="form-group mb-5">
+                <UiFileInputButton
+                    createObjectURL={createObjectURL}
+                    fileInputRef={fileInputRef}
+                    formRef={formRef}
+                    label="Télécharger l'image"
+                    onChange={onChange}
+                    setCreateObjectURL={setCreateObjectURL}
+                    setTarget={setTarget}
+                    uploadFileName="theFiles"
+                />
+            </div>
+            <button
+                className="btn btn-primary"
+                onClick={() => {
+                    handleSubmit().then()
+                }}
+                type="button"
+            >
+                Créer recette
+            </button>
         </div>
     )
 }
