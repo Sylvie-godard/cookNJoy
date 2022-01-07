@@ -1,8 +1,14 @@
+import { IIngredient } from './ingredient'
+
 export interface IRecipe {
-    photo: string;
-    title: string;
     description: string;
-    id: number
+    id: number,
+    ingredients: IIngredient[];
+    personsNumber: number;
+    preparationTime: number;
+    photo: string;
+    votesNumber: number;
+    title: string;
 }
 
 export interface IRecipeCreate {
@@ -12,8 +18,12 @@ export interface IRecipeCreate {
 }
 
 export const defaultRecipe = {
-    photo: '',
-    title: '',
     description: '',
-    id: 0
+    id: 0,
+    ingredients: [],
+    personsNumber: 0,
+    photo: '',
+    preparationTime: 0,
+    votesNumber: 0,
+    title: ''
 }

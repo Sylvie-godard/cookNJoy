@@ -1,6 +1,26 @@
 {
   "description": "Pudding muffin jelly beans dragée wafer. Sweet roll powder pastry topping tootsie roll candy. Brownie halvah cookie chocolate cake sugar plum sesame snaps muffin.",
   "id": 2,
+  "ingredients": [
+    {
+      "measureType": "g",
+      "name": "steak haché",
+      "quantity": 500
+    },
+    {
+      "measureType": "feuilles",
+      "name": "salade",
+      "quantity": 4
+    },
+    {
+      "measureType": "rondelles",
+      "name": "tomate",
+      "quantity": "quelques"
+    }
+  ],
+  "personsNumber": 5,
   "photo": "pate-carbo.jpg",
+  "preparationTime": 50,
+  "votesNumber": 0,
   "title": "Pâtes carbonara"
 }

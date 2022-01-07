@@ -1,6 +1,25 @@
 {
   "description": "Jelly beans brownie danish. Liquorice icing sesame snaps bear claw cupcake fruitcake soufflé chocolate cake sweet roll.",
   "id": 4,
+  "ingredients": [
+    {
+      "measureType": "g",
+      "name": "steak haché",
+      "quantity": 500
+    },
+    {
+      "measureType": "feuilles",
+      "name": "salade",
+      "quantity": 4
+    },
+    {
+      "measureType": "rondelles",
+      "name": "tomate",
+      "quantity": "quelques"
+    }
+  ],
   "photo": "muffin-myrtille.jpg",
-  "title": "Muffin à la myrtille"
+  "preparationTime": 50,
+  "title": "Muffin à la myrtille",
+  "votesNumber": 0
 }

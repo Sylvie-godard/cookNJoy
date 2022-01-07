@@ -1,6 +1,25 @@
 {
   "description": "Tiramisu lemon drops bear claw wafer biscuit topping cookie tootsie roll. Bonbon chupa chups carrot cake marshmallow brownie.",
   "id": 3,
+  "ingredients": [
+    {
+      "measureType": "g",
+      "name": "steak haché",
+      "quantity": 500
+    },
+    {
+      "measureType": "feuilles",
+      "name": "salade",
+      "quantity": 4
+    },
+    {
+      "measureType": "rondelles",
+      "name": "tomate",
+      "quantity": "quelques"
+    }
+  ],
   "photo": "salade-cezar.jpeg",
-  "title": "Salade cézar"
+  "preparationTime": 50,
+  "title": "Salade cézar",
+  "votesNumber": 0
 }
