@@ -25,10 +25,10 @@ const Card: React.FC<Props> = (
     }) => {
 
     return (
-        <div className={style.card + ' ' + className}>
+        <div className={style.card + ' card shadow ' + className}>
             <Image src={'/images/' + image} alt={imageName} width={400} height={250}/>
-            <div className="card-body">
-                <h5 className="card-title">{title}</h5>
+            <div className={style.cardBody + ' card-body'}>
+                <h5 className='card-title'>{title}</h5>
                 <p className="card-text">{description}</p>
                 <Link href={'/recipes/view/' + link}>
                     <a className="btn btn-primary">{button}</a>
